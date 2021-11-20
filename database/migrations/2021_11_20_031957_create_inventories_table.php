@@ -22,7 +22,7 @@ class CreateInventoriesTable extends Migration
             $table->double('weight');
             $table->integer('price_cents');
             $table->integer('sale_price_cents');
-            $table->integer('cost_centers');
+            $table->integer('cost_cents');
             $table->string('sku');
             $table->double('length');
             $table->double('width');

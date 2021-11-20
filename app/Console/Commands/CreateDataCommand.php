@@ -2,13 +2,17 @@
 
 namespace App\Console\Commands;
 
+use App\Console\Commands\Data\CreateInventoryDataCommand;
 use App\Console\Commands\Data\CreateUserDataCommand;
 use Illuminate\Console\Command;
+use App\Console\Commands\Data\CreateProductDataCommand;
 
 class CreateDataCommand extends Command
 {
     const COMMANDS_TO_RUN = [
-        CreateUserDataCommand::class
+        CreateUserDataCommand::class,
+        CreateProductDataCommand::class,
+        CreateInventoryDataCommand::class
     ];
 
     /**
