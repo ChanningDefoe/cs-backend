@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Products extends Model
 {
@@ -26,4 +27,15 @@ class Products extends Model
         'note',
         'admin_id',
     ];
+
+    /**
+     * The products inventory
+     * 
+     * @return HasMany
+     */
+    public function inventory() : HasMany
+    {
+        return $this->hasMany(Inventory::class, 'product_id', 'id');
+    }
+
 }

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -56,6 +57,16 @@ class User extends Authenticatable implements JWTSubject
     public function paymentDetails(): HasOne
     {
         return $this->hasOne(PaymentDetails::class);
+    }
+
+    /**
+     * User products
+     * 
+     * @return HasMany
+     */
+    public function products(): HasMany
+    {
+        return $this->hasMany(Products::class, 'admin_id', 'id');
     }
 
     /**
