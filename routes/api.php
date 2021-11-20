@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\InventoryController;
 use App\Http\Controllers\ProductsController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -31,3 +32,4 @@ Route::group([
 });
 
 Route::get('/products', [ProductsController::class, 'index']);
+Route::get('/inventory', [InventoryController::class, 'index']);
