@@ -32,7 +32,7 @@ class ProductsController extends Controller
         ->allowedIncludes('inventory');
 
         return response()->json(
-            $query->where('admin_id', '=', $user->id)->paginate()
+            $query->where('admin_id', '=', $user->id)->get()
         );
     }
 }
