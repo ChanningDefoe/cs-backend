@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Inventory;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Illuminate\Support\Facades\Auth;
+use Spatie\QueryBuilder\QueryBuilder;
+use Illuminate\Support\Facades\DB;
 
 class InventoryController extends Controller
 {
@@ -23,6 +27,17 @@ class InventoryController extends Controller
     {
         $user = Auth::user();
 
-        return response()->json(['message' => 'This is secure area.']);
+        $query = QueryBuilder::for(Inventory::class)
+        ->with('product')
+        ->whereExists(function ($query) use ($user) {
+            $query->select(DB::raw(1))
+                  ->from('products')
+                  ->whereColumn('products.id', 'inventories.product_id')
+                  ->where('products.admin_id', '=', $user->id);
+        });
+
+        return response()->json(
+            $query->get()
+        );
     }
 }

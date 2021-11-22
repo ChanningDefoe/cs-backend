@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Inventory extends Model
 {
@@ -30,4 +31,14 @@ class Inventory extends Model
         'height',
         'note',
     ];
+
+    /**
+     * The product associated with the inventory.
+     * 
+     * @return HasOne
+     */
+    public function product(): HasOne
+    {
+        return $this->hasOne(Products::class, 'id', 'product_id');
+    }
 }
