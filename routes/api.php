@@ -33,4 +33,5 @@ Route::group([
 });
 
 Route::get('/products', [ProductsController::class, 'index']);
+Route::post('/products', [ProductsController::class, 'store']);
 Route::get('/inventory', [InventoryController::class, 'index']);
